@@ -80,6 +80,24 @@ slots in real time.
 
 ---
 
+## 🧠 Technical Highlights
+
+### 1. Dynamic Availability Engine
+
+The system does not store pre-generated bookable slots.
+
+Availability is calculated dynamically from:
+
+```text
+(Regular Availability ∪ Temporary Availability)
+                − Blocked Periods
+                − Approved Leave
+                − Active Appointments
+                ↓
+          Bookable Slots
+```
+---
+
 ## 📐 System Architecture & Availability Algebra
 
 ### Dynamic Availability Formula

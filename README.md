@@ -169,15 +169,15 @@ To prevent double-booking race conditions during simultaneous requests, the back
 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Backend** | Python 3.13, FastAPI | High-performance asynchronous REST API |
+| **Backend** | Python 3.13, FastAPI | REST API and backend business logic |
 | **ORM & DB** | PostgreSQL, SQLAlchemy 2.0, Alembic | Relational database layer with schema migrations |
 | **Security** | JWT (HS256), bcrypt | Token authentication, password hashing, and server-side RBAC |
 | **Frontend** | React 18, TypeScript (Strict Mode), Vite | Component-driven, type-safe web application |
 | **Styling** | Tailwind CSS, Lucide React | Modern academic design system |
-| **Data Fetching**| TanStack Query (React Query v5) | Server-state caching and automated query invalidation |
-| **Client Routing**| React Router v6 | Role-based protected routing |
-| **Testing** | Pytest, Vitest, Testing Library | Comprehensive unit, integration, and concurrency test suites |
-
+| **Data Fetching** | TanStack Query (React Query v5) | Server-state caching and automated query invalidation |
+| **Client Routing** | React Router v6 | Role-based protected routing |
+| **Testing** | Pytest, Vitest, Testing Library | Unit, integration, and concurrency testing |
+| **Infrastructure** | Docker, Docker Compose | Containerized development and deployment |
 ---
 
 ## 💻 Local Development Setup

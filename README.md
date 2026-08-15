@@ -329,26 +329,71 @@ The seed script creates pre-configured demo accounts for all roles:
 
 ## 🧪 Automated Testing
 
-### Backend Test Suite (Pytest)
+The project includes separate backend and frontend test suites covering
+authentication, authorization, scheduling logic, appointment workflows,
+security boundaries, and UI behavior.
+
+### Backend
+
+```text
+73 passed
+1 skipped
+0 failed
+```
+
+The backend tests cover:
+
+- Authentication and RBAC
+- User and department management
+- Dynamic availability and interval algebra
+- Leave and availability APIs
+- Appointment lifecycle
+- Authorization and IDOR protection
+- Transaction rollback
+- Concurrency-related behavior
+
+A dedicated PostgreSQL concurrency test is available for verifying
+real row-level locking against PostgreSQL.
+
+### Frontend
+
+```text
+20 passed
+0 failed
+```
+
+Frontend tests cover:
+
+- Formatting utilities
+- Status badges
+- Protected routes
+- Faculty management
+- Appointment booking UI
+
+### Production Build
+
+The frontend production build has been verified successfully with
+TypeScript compilation and Vite production bundling.
+
+```bash
+npm run build
+```
+
+### Running Tests
+
+Backend:
+
 ```bash
 cd backend
 pytest -v
 ```
-**Results**: 73 passed unit/integration tests verifying RBAC, IDOR isolation, availability algebra, slot generation, appointment lifecycle, and transaction rollback.
 
-### Frontend Test Suite (Vitest)
+Frontend:
+
 ```bash
 cd frontend
 npm test
 ```
-**Results**: 20 passed tests covering date formatters, status badges, ErrorBoundary, RBAC route guards, faculty management rendering, and booking modal conflict states.
-
-### Frontend Production Build
-```bash
-cd frontend
-npm run build
-```
-
 ---
 
 ## 🚢 Production Deployment

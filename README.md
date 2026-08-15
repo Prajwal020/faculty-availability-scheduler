@@ -96,6 +96,55 @@ Availability is calculated dynamically from:
                 ↓
           Bookable Slots
 ```
+
+This allows faculty availability to change without maintaining static appointment-slot records.
+
+### 2. Concurrency-Safe Booking
+
+When multiple students attempt to book the same slot simultaneously, the backend performs an atomic PostgreSQL transaction and locks the target faculty resource using `SELECT ... FOR UPDATE`.
+
+The booking flow:
+
+1. Recalculates current availability
+2. Checks for conflicting appointments
+3. Creates the appointment only if the slot is still available
+4. Returns `409 SLOT_UNAVAILABLE` if another transaction has already reserved the slot
+
+This provides concurrency-safe protection against double-booking.
+
+### 3. Role-Based Access Control
+
+The application provides separate permissions for:
+
+- **Student**
+- **Faculty**
+- **Administrator**
+
+Authorization is enforced on the backend rather than relying only on frontend route protection.
+
+### 4. Appointment State Machine
+
+Appointments follow a controlled lifecycle:
+
+```text
+REQUESTED
+   ├── ACCEPTED ──→ COMPLETED
+   │      └───────→ CANCELLED
+   ├── REJECTED
+   └── CANCELLED
+```
+
+Terminal states cannot be modified through invalid transitions.
+
+### 5. Timezone-Aware Scheduling
+
+The application uses `Asia/Kolkata` as the institutional timezone and handles current-day slot expiration using backend time calculations.
+
+### 6. Privacy-Aware Availability
+
+Students receive only the information required to determine whether a faculty member is available.
+
+Sensitive internal leave information is restricted to authorized faculty and administrator views.
 ---
 
 ## 📐 System Architecture & Availability Algebra

@@ -180,6 +180,86 @@ To prevent double-booking race conditions during simultaneous requests, the back
 | **Infrastructure** | Docker, Docker Compose | Containerized development and deployment |
 ---
 
+## 🏗️ System Architecture
+
+The application follows a layered full-stack architecture:
+
+```text
+┌─────────────────────────────────────────────┐
+│              React Frontend                 │
+│   Student • Faculty • Administrator         │
+└──────────────────────┬──────────────────────┘
+                       │ REST API / JWT
+                       ▼
+┌─────────────────────────────────────────────┐
+│               FastAPI                       │
+│        API Routes + RBAC + Validation       │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│              Service Layer                  │
+│                                             │
+│  Availability Engine  │  Appointment Engine │
+│  Leave Management     │  User Management    │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│          Repository / ORM Layer             │
+│             SQLAlchemy 2.0                 │
+└──────────────────────┬──────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────┐
+│               PostgreSQL                    │
+│      Users • Faculty • Availability         │
+│      Leave • Appointments • Departments     │
+└─────────────────────────────────────────────┘
+```
+
+### Availability Flow
+
+```text
+Regular Availability ─────┐
+                          │
+Temporary Availability ──┤
+                          ▼
+                    Availability
+                       Engine
+                          │
+Blocked Periods ──────────┤
+                          │
+Approved Leave ───────────┤
+                          │
+Active Appointments ──────┘
+                          │
+                          ▼
+                  Bookable Time Slots
+```
+
+### Booking Flow
+
+```text
+Student selects slot
+        ↓
+Backend validates request
+        ↓
+Availability recalculated
+        ↓
+PostgreSQL transaction begins
+        ↓
+Faculty row locked
+        ↓
+Conflict check
+    ┌───┴────┐
+    │        │
+ Conflict   Available
+    │        │
+   409       ↓
+           Create
+         appointment
+              ↓
+            Commit
+```
+---
 ## 💻 Local Development Setup
 
 ### 1. Prerequisites

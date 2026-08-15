@@ -6,6 +6,13 @@ Built with **FastAPI**, **PostgreSQL**, **SQLAlchemy 2.0**, **Alembic**, **React
 
 ---
 
+## 📸 Preview
+
+### Faculty Availability
+
+![Faculty Availability](docs/screenshots/faculty-availability.png)
+
+---
 ## 📌 Problem Overview
 
 In academic institutions, coordinating student-faculty meetings is often fragmented across emails, paper sign-up sheets, and conflicting calendars:

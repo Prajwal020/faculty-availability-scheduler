@@ -653,5 +653,21 @@ Development `.env` files are excluded from version control.
 
 ---
 
+## 📚 Documentation
+
+Detailed project documentation is available in the [`docs/`](docs/) directory.
+
+| Document | Description |
+| :--- | :--- |
+| [Architecture](docs/architecture.md) | System architecture, backend layers, frontend structure, and scheduling design |
+| [API Documentation](docs/api.md) | Major REST API endpoints and request/response workflows |
+| [Database](docs/database.md) | Database entities, relationships, and schema design |
+| [Deployment](docs/deployment.md) | Production deployment and environment configuration |
+| [Demo Guide](docs/demo.md) | Recommended end-to-end application demonstration |
+| [Resume Guide](docs/resume.md) | Resume-ready project description and technical highlights |
+| [Portfolio Guide](docs/portfolio.md) | Project presentation, screenshots, and portfolio material |
+
+---
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).

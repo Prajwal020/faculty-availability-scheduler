@@ -396,6 +396,56 @@ npm test
 ```
 ---
 
+## 🔐 Security
+
+Security is enforced primarily on the backend, with the frontend acting as the presentation and interaction layer.
+
+### Authentication
+
+- JWT Bearer token authentication
+- bcrypt password hashing
+- Token expiration and validation
+- Automatic handling of expired/invalid sessions
+
+### Role-Based Access Control
+
+The system supports three roles:
+
+| Role | Access |
+| :--- | :--- |
+| **Student** | Faculty discovery, availability, appointment requests and personal appointments |
+| **Faculty** | Availability, leave, blocked periods, appointment management and personal schedule |
+| **Administrator** | User, faculty and department management |
+
+Authorization is enforced at the API level rather than relying only on frontend route guards.
+
+### Resource Ownership
+
+Protected resources are validated against the authenticated user to prevent unauthorized access to another user's data.
+
+This includes appointment and faculty-related operations.
+
+### Privacy
+
+Faculty leave information is separated into public and privileged views.
+
+Students can determine whether a faculty member is on leave without receiving sensitive internal leave details.
+
+### Configuration Security
+
+Secrets and environment-specific configuration are kept outside the application source code through environment variables.
+
+Production configuration includes:
+
+- Database credentials
+- JWT secret
+- CORS origins
+- API configuration
+
+Development `.env` files are excluded from version control.
+
+---
+
 ## 🚢 Production Deployment
 
 ### Production Checklist

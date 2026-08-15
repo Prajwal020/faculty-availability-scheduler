@@ -38,28 +38,45 @@ slots in real time.
 
 ---
 
-## 🚀 Key Features
+## ✨ Key Features
 
-### 🎓 Student Portal
-- **Faculty Discovery**: Search faculty by name, department, title, meeting mode, or research specialization.
-- **Real-Time Availability Calendar**: Dynamic 7-day quick selector querying calculated 30-minute office hour slots in real time.
-- **Conflict-Resilient Booking**: Instant validation preventing appointment overlaps.
-- **Appointment Tracking & History**: Tabbed overview (*All*, *Confirmed*, *Pending*, *Completed*, *Cancelled*).
-- **Self-Service Cancellation**: Releases booked slots back into the public availability pool immediately.
+### 👨‍🎓 Student
 
-### 👨‍🏫 Faculty Portal
-- **Recurring Weekly Office Hours**: Set recurring weekly schedules by day-of-week (0=Monday to 6=Sunday).
-- **Pop-up Office Hours**: One-time extra office hour windows for specific dates (e.g. before midterms).
-- **Temporary Blocked Periods**: Block busy windows for thesis defenses, seminars, or meetings.
-- **Leave Declarations**: Planned absence management (`FULL_DAY`, `HALF_DAY_MORNING`, `HALF_DAY_AFTERNOON`, `MULTI_DAY`).
-- **Appointment Requests Management**: 1-click **Accept** (with optional student preparation notes) and **Reject** (with reason).
-- **Schedule & Attendance**: Calendar view with **Mark Completed** verification.
+- Search and browse faculty members
+- View real-time faculty availability
+- Select available appointment slots
+- Submit appointment requests
+- Track appointment status
+- Cancel appointments
 
-### 🛡️ Administrator Portal
-- **Governance Dashboard**: Institutional metrics (total users, active accounts, department counts).
-- **User Management**: Activate/suspend user accounts and create new student/faculty/admin profiles.
-- **Faculty Directory**: Institutional overview of faculty members and department affiliations.
-- **Department Management**: CRUD operations for academic departments and campus building allocations.
+### 👨‍🏫 Faculty
+
+- Manage recurring weekly office hours
+- Publish one-time temporary office hours
+- Create temporary blocked periods
+- Declare planned leave
+- Review student appointment requests
+- Accept or reject requests
+- Complete or cancel appointments
+- Manage their consultation schedule
+
+### 🛡️ Administrator
+
+- View system-wide statistics
+- Manage users and account status
+- Manage faculty profiles
+- Manage academic departments
+- Maintain institutional data
+
+### ⚙️ Scheduling Engine
+
+- Dynamically calculate available slots
+- Combine regular and temporary availability
+- Apply blocked periods and leave
+- Exclude active appointments
+- Generate discrete bookable slots
+- Handle current-day expiration
+- Respect the institutional `Asia/Kolkata` timezone
 
 ---
 

@@ -147,7 +147,7 @@ Students receive only the information required to determine whether a faculty me
 Sensitive internal leave information is restricted to authorized faculty and administrator views.
 ---
 
-## 📐 System Architecture & Availability Algebra
+## 🧠 Scheduling Engine & Availability Algebra
 
 ### Dynamic Availability Formula
 Instead of statically generating calendar slots, availability is dynamically computed on-demand using continuous interval set operations:

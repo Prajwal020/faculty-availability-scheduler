@@ -1,8 +1,10 @@
 # Faculty Availability & Appointment Scheduler
 
-A full-stack, enterprise-grade academic scheduling platform designed to solve the complexity of faculty office hours, ad-hoc availability, leave management, and appointment bookings in institutional environments.
+A full-stack academic scheduling platform that helps students find real-time faculty availability and request appointments, while giving faculty control over office hours, leave, blocked periods, and bookings.
 
-Built with **FastAPI**, **PostgreSQL**, **SQLAlchemy 2.0**, **Alembic**, **React 18**, **TypeScript**, and **TanStack Query**.
+The system dynamically calculates bookable time slots instead of relying on pre-generated static slots.
+
+> Built with React, TypeScript, FastAPI, PostgreSQL, SQLAlchemy, and Alembic.
 
 ---
 

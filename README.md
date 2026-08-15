@@ -669,5 +669,20 @@ Detailed project documentation is available in the [`docs/`](docs/) directory.
 
 ---
 
+## ⚠️ Known Limitations
+
+The current version focuses on the core faculty availability and appointment workflow.
+
+The following features are intentionally outside the current scope:
+
+- Email or SMS notifications
+- Recurring appointment series
+- External calendar synchronization
+- Mobile-native applications
+
+These can be considered future extensions without changing the core scheduling architecture.
+
+---
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).

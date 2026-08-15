@@ -8,13 +8,6 @@ The system dynamically calculates bookable time slots instead of relying on pre-
 
 ---
 
-## 📸 Preview
-
-### Faculty Availability
-
-![Faculty Availability](docs/screenshots/faculty-availability.png)
-
----
 ## 📌 Problem Overview
 
 Students often struggle to know when a faculty member is actually available
@@ -35,6 +28,14 @@ which can result in unnecessary back-and-forth and conflicting bookings.
 This project provides a centralized system where faculty can manage their
 availability and students can discover and request genuinely bookable time
 slots in real time.
+
+---
+
+## 📸 Preview
+
+### Faculty Availability
+
+![Faculty Availability](docs/screenshots/faculty-availability.png)
 
 ---
 

@@ -461,31 +461,6 @@ Use the seeded development accounts to explore the Student, Faculty, and Adminis
 
 > **Note:** Seed accounts and their credentials are intended for local development and demonstration only. Do not use them in a production deployment.
 
----
-
-### 5. Running Tests
-
-#### Backend
-
-From the `backend` directory:
-
-```bash
-pytest -v
-```
-
-#### Frontend
-
-From the `frontend` directory:
-
-```bash
-npm test
-```
-
-#### Frontend Production Build
-
-```bash
-npm run build
-```
 
 ---
 

@@ -6,6 +6,13 @@ The system dynamically calculates bookable time slots instead of relying on pre-
 
 > Built with React, TypeScript, FastAPI, PostgreSQL, SQLAlchemy, and Alembic.
 
+[![Backend Tests](https://img.shields.io/badge/backend-tests%20passing-brightgreen)](#-testing)
+[![Frontend Tests](https://img.shields.io/badge/frontend-tests%20passing-brightgreen)](#-testing)
+[![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
+[![React](https://img.shields.io/badge/React-18-61DAFB)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115%2B-009688)](https://fastapi.tiangolo.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%2B-336791)](https://www.postgresql.org/)
+
 ---
 
 ## 📌 Problem Overview

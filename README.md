@@ -17,12 +17,24 @@ The system dynamically calculates bookable time slots instead of relying on pre-
 ---
 ## 📌 Problem Overview
 
-In academic institutions, coordinating student-faculty meetings is often fragmented across emails, paper sign-up sheets, and conflicting calendars:
-1. **Dynamic Availability Shifts**: Faculty schedules fluctuate weekly due to exams, departmental committees, guest lectures, and planned leave.
-2. **Double-Booking & Race Conditions**: Popular office hour slots often receive simultaneous booking requests from multiple students.
-3. **Privacy & Administrative Overhead**: Leave records and personal reasons must remain private while accurately blocking student appointments.
+Students often struggle to know when a faculty member is actually available
+for a discussion, consultation, or academic meeting.
 
-The **Faculty Availability & Appointment Scheduler** solves this with a **5-Tier Continuous Interval Algebra Engine** and **Transactional Row-Level Locking**, guaranteeing real-time slot calculation and zero double-bookings.
+Faculty availability can change because of:
+
+- Regular teaching schedules
+- Meetings and other commitments
+- Temporary office hours
+- Blocked periods
+- Planned leave
+- Existing appointments
+
+Traditional systems often rely on fixed schedules or manual communication,
+which can result in unnecessary back-and-forth and conflicting bookings.
+
+This project provides a centralized system where faculty can manage their
+availability and students can discover and request genuinely bookable time
+slots in real time.
 
 ---
 

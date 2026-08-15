@@ -262,53 +262,250 @@ Conflict check
 ---
 ## 💻 Local Development Setup
 
-### 1. Prerequisites
-- Python 3.11+
+### Prerequisites
+
+Make sure the following are installed:
+
+- Python 3.13+
 - Node.js 18+ and npm
-- PostgreSQL (optional for local SQLite development)
+- PostgreSQL
+- Git
+
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Prajwal020/faculty-availability-scheduler.git
+cd faculty-availability-scheduler
+```
+
+---
 
 ### 2. Backend Setup
+
+Navigate to the backend directory:
+
 ```bash
-# Navigate to backend directory
 cd backend
+```
 
-# Create virtual environment
+Create a Python virtual environment:
+
+```bash
 python -m venv venv
-source venv/Scripts/activate  # On Windows: venv\Scripts\activate
+```
 
-# Install dependencies
+Activate the virtual environment.
+
+**Windows — PowerShell:**
+
+```powershell
+.\venv\Scripts\Activate.ps1
+```
+
+**Windows — Command Prompt:**
+
+```cmd
+venv\Scripts\activate
+```
+
+**Linux/macOS:**
+
+```bash
+source venv/bin/activate
+```
+
+Install the backend dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
-# Configure environment variables
-cp .env.example .env
+#### Configure Environment Variables
 
-# Run database migrations
+Copy the example environment file:
+
+```text
+.env.example → .env
+```
+
+Configure the values in `.env` according to your local PostgreSQL setup.
+
+For example:
+
+```env
+ENVIRONMENT=development
+DATABASE_URL=postgresql://<username>:<password>@localhost:5432/<database_name>
+JWT_SECRET_KEY=<your-development-secret>
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
+CORS_ORIGINS=http://localhost:5173
+TIMEZONE=Asia/Kolkata
+```
+
+> **Important:** Never commit `.env` or real credentials to GitHub.
+
+#### Run Database Migrations
+
+Apply the database schema:
+
+```bash
 alembic upgrade head
+```
 
-# Seed initial development data (Admin, Faculty, Students, Departments)
+#### Seed Development Data
+
+Populate the database with sample departments, users, faculty members, students, availability, and demo data:
+
+```bash
 python scripts/seed_data.py
+```
 
-# Start backend server
+#### Start the Backend
+
+```bash
 uvicorn app.main:app --reload --port 8000
 ```
-Backend API will be live at [http://127.0.0.1:8000](http://127.0.0.1:8000). Interactive Swagger documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+
+The backend API will be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Interactive API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Alternative API documentation:
+
+```text
+http://127.0.0.1:8000/redoc
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+---
 
 ### 3. Frontend Setup
+
+Open a **new terminal** and navigate to the project root:
+
 ```bash
-# Navigate to frontend directory
-cd frontend
+cd faculty-availability-scheduler/frontend
+```
 
-# Install dependencies
+Install frontend dependencies:
+
+```bash
 npm install
+```
 
-# Configure environment variables
-cp .env.example .env
+#### Configure Environment Variables
 
-# Start frontend dev server
+Copy:
+
+```text
+.env.example → .env
+```
+
+Set the backend API URL:
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+> Frontend environment variables prefixed with `VITE_` are exposed to the browser. Never place secrets, database credentials, or JWT signing keys in frontend environment variables.
+
+#### Start the Frontend
+
+```bash
 npm run dev
 ```
-Frontend application will be accessible at [http://localhost:5173](http://localhost:5173).
 
+The frontend will be available at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+### 4. Run the Application
+
+Once both services are running:
+
+```text
+PostgreSQL
+    ↓
+FastAPI Backend
+http://127.0.0.1:8000
+    ↓
+React Frontend
+http://localhost:5173
+```
+
+Open the frontend in your browser:
+
+```text
+http://localhost:5173
+```
+
+Use the seeded development accounts to explore the Student, Faculty, and Administrator portals.
+
+> **Note:** Seed accounts and their credentials are intended for local development and demonstration only. Do not use them in a production deployment.
+
+---
+
+### 5. Running Tests
+
+#### Backend
+
+From the `backend` directory:
+
+```bash
+pytest -v
+```
+
+#### Frontend
+
+From the `frontend` directory:
+
+```bash
+npm test
+```
+
+#### Frontend Production Build
+
+```bash
+npm run build
+```
+
+---
+
+### 6. PostgreSQL Concurrency Test
+
+The project includes a dedicated PostgreSQL integration test for verifying concurrent booking protection.
+
+Configure:
+
+```env
+TEST_POSTGRESQL_URL=postgresql://<username>:<password>@localhost:5432/<test_database>
+```
+
+Then run:
+
+```bash
+pytest -v tests/test_concurrency_postgres.py
+```
+
+This test verifies that simultaneous attempts to book the same faculty slot are serialized by PostgreSQL row-level locking and that only one booking succeeds.
 ---
 
 ## 🔑 Demo & Test Credentials

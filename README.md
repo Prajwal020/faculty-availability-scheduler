@@ -684,5 +684,33 @@ These can be considered future extensions without changing the core scheduling a
 
 ---
 
+## 📌 Project Status
+
+**Status: Deployment-Ready**
+
+The core full-stack application has been implemented and locally verified across the Student, Faculty, and Administrator workflows.
+
+### Verified
+
+- Backend API and database integration
+- PostgreSQL database support
+- Dynamic faculty availability engine
+- Faculty leave and availability management
+- Appointment lifecycle
+- Concurrency-safe booking
+- JWT authentication and RBAC
+- Frontend role-based dashboards
+- Backend and frontend test suites
+- Production frontend build
+- Local full-stack integration
+
+### Deployment Status
+
+The application is **ready for deployment but has not yet been deployed to a public production environment**.
+
+The next step is production deployment and verification.
+
+---
+
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).

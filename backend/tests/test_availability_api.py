@@ -1,6 +1,7 @@
 from datetime import date, datetime, timedelta
 from zoneinfo import ZoneInfo
 from app.core.config import settings
+from app.core.time_utils import get_current_date
 from app.models.user import User, UserRole, UserStatus
 from app.models.faculty import Faculty, MeetingMode
 from app.core.security import hash_password, create_access_token
@@ -220,6 +221,14 @@ def test_student_leave_privacy_and_dynamic_availability(
 ):
     faculty_id = faculty_user.faculty_profile.id
 
+    # Compute a deterministic future Monday relative to current time
+    today = get_current_date()
+    days_until_monday = (0 - today.weekday()) % 7
+    if days_until_monday == 0:
+        days_until_monday = 7
+    target_monday = today + timedelta(days=days_until_monday)
+    target_date_str = target_monday.isoformat()
+
     # 1. Set Regular Availability on Monday (09:00 - 12:00)
     client.post(
         "/api/v1/availability/regular",
@@ -233,8 +242,8 @@ def test_student_leave_privacy_and_dynamic_availability(
         headers=faculty_auth_headers,
     )
 
-    # 2. Query future Monday (2026-08-17)
-    res_calc = client.get(f"/api/v1/availability/{faculty_id}?date=2026-08-17&duration=30")
+    # 2. Query future Monday
+    res_calc = client.get(f"/api/v1/availability/{faculty_id}?date={target_date_str}&duration=30")
     assert res_calc.status_code == 200
     data = res_calc.json()
     assert data["day_of_week"] == 0
@@ -242,12 +251,12 @@ def test_student_leave_privacy_and_dynamic_availability(
     assert "leave_reason" not in data  # Privacy check: student response must not expose leave_reason
     assert len(data["slots"]) == 6
 
-    # 3. Declare Private Full-Day Leave on Monday (2026-08-17)
+    # 3. Declare Private Full-Day Leave on that Monday
     client.post(
         "/api/v1/leave",
         json={
-            "start_date": "2026-08-17",
-            "end_date": "2026-08-17",
+            "start_date": target_date_str,
+            "end_date": target_date_str,
             "leave_type": "FULL_DAY",
             "reason": "CONFIDENTIAL: Urgent Medical Procedure",
         },
@@ -255,7 +264,7 @@ def test_student_leave_privacy_and_dynamic_availability(
     )
 
     # 4. Student queries the date -> is_on_leave=True, slots=0, NO leave_reason exposed!
-    res_calc2 = client.get(f"/api/v1/availability/{faculty_id}?date=2026-08-17&duration=30")
+    res_calc2 = client.get(f"/api/v1/availability/{faculty_id}?date={target_date_str}&duration=30")
     assert res_calc2.status_code == 200
     data2 = res_calc2.json()
     assert data2["is_on_leave"] is True
